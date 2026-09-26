@@ -65,78 +65,72 @@ body {
 /* ==========================================================================
    3. HEADER STYLES
    ========================================================================== */
+/* ==========================================================================
+   HEADER & NAVIGATION STYLES
+   ========================================================================== */
 .app-header {
-  background-color: var(--bg-surface);
-  border-bottom: 1px solid var(--border-color);
-  padding: 0.875rem 1.5rem;
+  background-color: var(--bg-surface, #1e293b);
+  border-bottom: 1px solid var(--border-color, #334155);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 50;
+  backdrop-filter: blur(8px);
 }
 
 .header-container {
-  max-width: var(--max-width);
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0.85rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
 }
 
-/* Logo / Brand */
+/* Brand Link */
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text-primary);
+  gap: 0.6rem;
   text-decoration: none;
+  color: var(--text-primary, #ffffff);
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: -0.025em;
 }
 
-.brand:hover {
-  opacity: 0.9;
+.brand-icon {
+  font-size: 1.4rem;
 }
 
-/* Search Form */
-.search-bar {
+/* Menu Items */
+.menu-list ul {
   display: flex;
-  flex: 1 1 280px;
-  max-width: 480px;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.search-input {
-  flex: 1;
-  padding: 0.55rem 0.85rem;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
-  background-color: var(--bg-input);
-  color: var(--text-primary);
-  font-size: 0.9rem;
-  outline: none;
-  transition: border-color 0.2s ease;
+.nav-link {
+  text-decoration: none;
+  color: var(--text-secondary, #94a3b8);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-sm, 6px);
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
-.search-input:focus {
-  border-color: var(--primary);
+.nav-link:hover {
+  color: var(--text-primary, #ffffff);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
-.btn-search {
-  padding: 0.55rem 1rem;
-  background-color: var(--primary);
-  color: #ffffff;
-  border: none;
-  border-radius: var(--radius-md);
-  font-size: 0.875rem;
+.nav-link.active {
+  color: var(--primary, #38bdf8);
   font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.btn-search:hover {
-  background-color: var(--primary-hover);
+  background-color: rgba(56, 189, 248, 0.1);
 }
 
 /* ==========================================================================
@@ -411,4 +405,158 @@ body {
   font-size: 0.9rem;
   color: var(--text-secondary);
   line-height: 1.5;
+}
+
+
+
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.weather-card {
+  background: var(--bg-surface, #1e293b);
+  border: 1px solid var(--border-color, #334155);
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.weather-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary, #38bdf8);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-primary, #ffffff);
+}
+
+.card-body {
+  margin: 1rem 0;
+}
+
+.card-body .temp {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--primary, #38bdf8);
+}
+
+.card-body .condition {
+  margin: 0.25rem 0 0;
+  text-transform: capitalize;
+  font-size: 0.9rem;
+  color: var(--text-secondary, #94a3b8);
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-muted, #64748b);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 0.75rem;
+}
+
+.status-container{
+  margin: 50px;
+}
+
+/* ==========================================================================
+   CUSTOM SELECT DROPDOWN
+   ========================================================================== */
+
+/* Container wrapper to align the title and dropdown */
+.header-action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.city-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+}
+
+/* Custom styled select box */
+.city-selector select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  
+  background-color: var(--bg-surface, #1e293b);
+  color: var(--text-primary, #f8fafc);
+  border: 1px solid var(--border-color, #334155);
+  border-radius: 8px;
+  padding: 0.65rem 2.75rem 0.65rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+  /* Custom SVG Chevron Arrow */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  background-size: 1.15rem;
+}
+
+/* Hover state */
+.city-selector select:hover {
+  border-color: var(--primary, #38bdf8);
+  background-color: #243248;
+}
+
+/* Focus / Active state */
+.city-selector select:focus {
+  border-color: var(--primary, #38bdf8);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
+
+/* Disabled state when fetching */
+.city-selector select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  border-color: #334155;
+  background-color: #1a2234;
+}
+
+/* Dropdown option menu background (Supported by Chromium/Firefox) */
+.city-selector select option {
+  background-color: #0f172a;
+  color: #f8fafc;
+  padding: 0.5rem;
+}
+
+/* Inline status indicator */
+.inline-loader {
+  font-size: 0.85rem;
+  color: var(--primary, #38bdf8);
+  font-weight: 500;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }

@@ -1,21 +1,8 @@
 import React from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 
-function Footer({ onLocationCheck, onGlobalWeather }) {
-  const handleLocationCheck = () => {
-    if (onLocationCheck) {
-      onLocationCheck();
-    } else {
-      console.log('Checking current location...');
-    }
-  };
-
-  const handleGlobalWeather = () => {
-    if (onGlobalWeather) {
-      onGlobalWeather();
-    } else {
-      console.log('Fetching global weather records...');
-    }
-  };
+function Footer() {
+  const navigate = useNavigate();
 
   return (
     <footer className="app-footer">
@@ -23,21 +10,27 @@ function Footer({ onLocationCheck, onGlobalWeather }) {
         <p className="footer-text">
           Stay updated with real-time weather alerts, forecast patterns, and environmental insights customized for your region or explored across the globe.
         </p>
+
         <div className="footer-actions">
           <button
             type="button"
             className="btn-footer btn-primary"
-            onClick={handleLocationCheck}
+            onClick={() => navigate('/#current-location')}
           >
             Check Current Location
           </button>
-          <button
-            type="button"
+
+          <NavLink
+            to="/global-weather"
             className="btn-footer btn-secondary"
-            onClick={handleGlobalWeather}
+            style={{ textDecoration: 'none' }}
           >
             Get Global Weather Records
-          </button>
+          </NavLink>
+        </div>
+
+        <div className="footer-bottom">
+          <span>&copy; {new Date().getFullYear()} Atmosphere Weather App. Built with OpenWeather API.</span>
         </div>
       </div>
     </footer>

@@ -105,7 +105,7 @@ export default function Home() {
             Track accurate hyper-local forecasts, monitor global storms, and view detailed atmospheric telemetry.
           </p>
 
-          <form className="hero-search-form" onSubmit={handleSearch}>
+          <form className="hero-search-form" onSubmit={handleSearch} id="current-location">
             <input
               type="text"
               className="hero-search-input"

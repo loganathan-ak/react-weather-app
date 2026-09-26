@@ -1,4 +1,5 @@
 import { geoInstance, axiosInstance } from './axios';
+import axios from 'axios';
 
 // Step 1: Resolve coordinates from city name
 export const getCoordinatesByCity = async (city, limit = 1) => {
@@ -33,4 +34,24 @@ export const fetchWeatherByCity = async (city) => {
 
   const { lat, lon } = locations[0];
   return await fetchWeatherByCoords(lat, lon);
+};
+
+
+export const getCitiesOfTamilnadu = async () => {
+  try {
+    const url =
+      import.meta.env.VITE_API_CITIES_OF_TAMILNADU ||
+      'https://countriesnow.space/api/v0.1/countries/state/cities';
+
+    const response = await axios.post(url, {
+      country: 'India',
+      state: 'Tamil Nadu',
+    });
+
+    // CountriesNow returns cities inside response.data.data
+    return response.data.data || [];
+  } catch (error) {
+    console.error('Failed to fetch Tamil Nadu cities:', error);
+    throw error;
+  }
 };
